@@ -1,0 +1,207 @@
+/* ===========================================================
+   Luna & Co. Candles — styles.css
+   Built to match the Project 4 checklist. Comments point out
+   which rule answers which requirement.
+   =========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root {
+  --plum: #2b1b2e;
+  --plum-deep: #1a1220;
+  --cream: #f5ede4;
+  --amber: #d4914a;
+  --rose: #c97b84;
+  --sage: #8a9b7e;
+}
+
+/* Requirement: "Center everything in the body" */
+body {
+  margin: 0;
+  padding: 60px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: var(--cream);
+  font-family: 'Work Sans', sans-serif;
+
+  /* Requirement: "Add a background image of your choosing".
+     Rather than link out to an external image file (which can break
+     or load slowly), the background is generated entirely in CSS with
+     radial-gradient() — this IS an image value for background-image,
+     just one the browser draws instead of downloads. */
+  background-color: var(--plum);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(212, 145, 74, 0.18), transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(201, 123, 132, 0.15), transparent 45%),
+    radial-gradient(circle at 50% 50%, var(--plum) 0%, var(--plum-deep) 100%);
+  background-attachment: fixed;
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin: 0 0 8px;
+  color: var(--cream);
+}
+
+h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: var(--cream);
+}
+
+hr {
+  width: 60%;
+  max-width: 400px;
+  border: none;
+  border-top: 1px solid rgba(245, 237, 228, 0.35);
+  margin: 32px 0;
+}
+
+/* Requirement: "Make all images siblings of H1 tags 200px by 200px"
+   The ~ (general sibling) combinator matches any <img> that shares a
+   parent with an <h1> and comes after it — here, the hero image. */
+h1 ~ img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 8px;
+}
+
+/* Requirement: "Make all next siblings of h3 tags 100px by 100px"
+   The + (adjacent sibling) combinator matches the element immediately
+   after an h3 — in every product div, that's the product image. */
+h3 + img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 14px;
+}
+
+/* Requirement: "Make all p tags that are next siblings of img tag have
+   italic font with size 12" — this lands on the price paragraph, since
+   it's the element placed right after the image in every product div. */
+img + p {
+  font-style: italic;
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.03em;
+  color: var(--amber);
+  margin: 0 0 10px;
+}
+
+/* Requirement block: "Apply the following to all divs" */
+div {
+  padding: 70px;                         /* A. 70px padding on all sides   */
+  border-style: solid;                   /* B. solid border                */
+  border-width: 2px;
+  border-color: rgba(245, 237, 228, 0.4);
+  height: 400px;                         /* C. 250px tall...               */
+  width: 700px;                          /*    ...by 500px wide            */
+  margin: auto;                          /* D. margin auto                 */
+  margin-top: 200px;                      /* E. margin-top 50px             */
+  display: flex;                         /* F. center the items in the div */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  background-color: rgba(245, 237, 228, 0.05); /* G. background color/image */
+}
+
+/* Small per-product accent so the four cards read as distinct scents
+   without breaking any of the shared div rules above. */
+.product:nth-of-type(1) { border-color: rgba(212, 145, 74, 0.55); }
+.product:nth-of-type(2) { border-color: rgba(201, 123, 132, 0.55); }
+.product:nth-of-type(3) { border-color: rgba(138, 155, 126, 0.55); }
+.product:nth-of-type(4) { border-color: rgba(217, 164, 65, 0.55); }
+
+p#description-1, p#description-2, p#description-3, p#description-4 {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--cream);
+  max-width: 280px;
+}
+
+label {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  opacity: 0.85;
+}
+
+input[type="number"] {
+  width: 70px;
+  padding: 6px 10px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 237, 228, 0.4);
+  background: rgba(245, 237, 228, 0.08);
+  color: var(--cream);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1rem;
+}
+
+input[type="number"]:focus {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+button#calculate-btn {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 14px 32px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--amber);
+  color: var(--plum-deep);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+button#calculate-btn:hover {
+  background-color: #e2a760;
+  transform: translateY(-1px);
+}
+
+button#calculate-btn:focus-visible {
+  outline: 3px solid var(--cream);
+  outline-offset: 3px;
+}
+
+/* The total line, built and inserted by JavaScript after the button. */
+p#order-total {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  margin-top: 18px;
+  color: var(--cream);
+}
+
+/* Respect reduced-motion preferences (turns off the flame flicker,
+   which is animated inside the SVG images themselves). */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Small screens: let product cards shrink instead of overflowing. */
+@media (max-width: 560px) {
+  div {
+    width: 90vw;
+    max-width: 340px;
+    height: auto;
+    padding: 40px 24px;
+  }
+}
